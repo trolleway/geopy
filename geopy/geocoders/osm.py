@@ -82,8 +82,8 @@ class Nominatim(Geocoder):
         self.view_box = view_box
         self.domain = domain.strip('/')
 
-        self.api = "%s://%s/search" % (self.scheme, self.domain)
-        self.reverse_api = "%s://%s/reverse" % (self.scheme, self.domain)
+        self.api = "{scheme}://{domain}{path}".format(scheme=self.scheme, domain=self.domain,path='/search')
+        self.reverse_api = "{scheme}://{domain}{path}".format(scheme=self.scheme, domain=self.domain, path='/reverse')
 
     def geocode(
             self,

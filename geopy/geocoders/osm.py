@@ -43,7 +43,9 @@ class Nominatim(Geocoder):
             proxies=None,
             domain='nominatim.openstreetmap.org',
             scheme=DEFAULT_SCHEME,
-            user_agent=None
+            user_agent=None,
+            path_search='search',
+            path_reverse='reverse'
     ):  # pylint: disable=R0913
         """
         :param string format_string: String containing '%s' where the
@@ -82,8 +84,8 @@ class Nominatim(Geocoder):
         self.view_box = view_box
         self.domain = domain.strip('/')
 
-        self.api = "{scheme}://{domain}{path}".format(scheme=self.scheme, domain=self.domain,path='/search')
-        self.reverse_api = "{scheme}://{domain}{path}".format(scheme=self.scheme, domain=self.domain, path='/reverse')
+        self.api = "{scheme}://{domain}/{path}".format(scheme=self.scheme, domain=self.domain,path='search')
+        self.reverse_api = "{scheme}://{domain}/{path}".format(scheme=self.scheme, domain=self.domain, path='reverse')
 
     def geocode(
             self,
